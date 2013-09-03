@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+        <input cosy-type="input" cosy-id="Test" data-value="component.text" />
+    </body>
+    <script src="xBinding.js"></script>
+    <script src="rivets.min.js"></script>
+    <script>
+        /*$.get("test.json", function(data) {
+            cosy.fn.bindings.observable(data).subscribe("propertychange:name", function(value) {
+                Test.name = value;
+            });
+        });*/
+
+        var data = {
+            name: "Test"
+        };
+
+        var componentObject = {
+            text: "defaultValue"
+        };
+
+
+        var input = document.querySelectorAll("input")[0];
+
+        bindings.observable(data);
+        bindings.observable(componentObject);
+
+        data.subscribe("propertychange:name", function(newValue){
+            componentObject.text = newValue;
+        });
+
+        componentObject.subscribe("propertychange:text", function(newValue){
+            data.name = newValue;
+        });
+
+        rivets.configure({
+          adapter: {
+            subscribe: function(obj, keypath, callback) {
+               obj.subscribe("propertychange:" + keypath, callback);
+            },
+            unsubscribe: function(obj, keypath, callback) {
+              obj.remove("propertychange:" + keypath, callback);
+            },
+            read: function(obj, keypath) {
+              return obj[keypath];
+            },
+            publish: function(obj, keypath, value) {
+              obj[keypath] = value;
+            }
+          }
+        });
+
+        rivets.bind( input, {
+            component: componentObject
+        });
+    </script>
+</html>

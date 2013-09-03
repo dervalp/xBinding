@@ -1,0 +1,9 @@
+{
+  "name": "xBinding",
+  "description": "Add bindings ability to any kind of data",
+  "version": "0.0.0",
+  "author": {
+    "name": "Pierre Derval"
+  },
+  "main": "./xBinding.js"
+}
