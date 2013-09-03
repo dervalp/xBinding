@@ -1,4 +1,4 @@
-var binding = require("./xBinding");
+var binding = require("./xbinding");
 
 var test = [ "test", "test2" ];
 

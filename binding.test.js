@@ -1,4 +1,4 @@
-var binding = require("./xBinding"),
+var binding = require("./xbinding"),
     should = require( "should" );
 
 describe( "Given a the X Binding", function( ) {

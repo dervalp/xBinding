@@ -1,4 +1,4 @@
-var xBinding = require("xBinding");
+var xBinding = require("xbinding");
 
 var parseBindings: function() {
         return this.bindings || { };
